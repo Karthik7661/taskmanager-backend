@@ -7,13 +7,37 @@
 <body>
 
 <div class="container">
+
     <h1>🚀 Task Manager</h1>
 
-    <!-- CREATE TASK -->
+    <!-- DASHBOARD STATS -->
+<div class="stats">
+    <div class="stat-card">
+        <h4>Total</h4>
+        <p id="totalCount">0</p>
+    </div>
+
+    <div class="stat-card pending">
+        <h4>Pending</h4>
+        <p id="pendingCount">0</p>
+    </div>
+
+    <div class="stat-card progress">
+        <h4>In Progress</h4>
+        <p id="progressCount">0</p>
+    </div>
+
+    <div class="stat-card completed">
+        <h4>Completed</h4>
+        <p id="completedCount">0</p>
+    </div>
+</div>
+    <!-- ================= CREATE TASK ================= -->
     <div class="card form-card">
         <h2>Create Task</h2>
 
         <input type="text" id="title" placeholder="Task Title">
+
         <textarea id="description" placeholder="Task Description"></textarea>
 
         <div class="row">
@@ -30,23 +54,45 @@
             </select>
         </div>
 
+        <input type="datetime-local" id="dueDate">
+
         <button onclick="createTask()">Add Task</button>
     </div>
 
-    <!-- SEARCH SECTION -->
+    <!-- ================= SEARCH SECTION ================= -->
     <div class="card">
         <h2>Search Tasks</h2>
+
         <div class="row">
             <input type="text" id="searchInput" placeholder="Search by title">
             <button onclick="searchTasks()">Search</button>
-            <button onclick="fetchTasks()">Reset</button>
+            <button onclick="resetSearch()">Reset</button>
         </div>
     </div>
 
-    <!-- ALL TASKS -->
+    <!-- ================= TASK LIST ================= -->
     <div class="card">
         <h2>All Tasks</h2>
+        <div class="row" style="margin-bottom:20px;">
+    <select id="sortSelect" onchange="applySorting()">
+        <option value="">Sort By</option>
+        <option value="title">Title</option>
+        <option value="priority">Priority</option>
+        <option value="status">Status</option>
+        <option value="dueDate">Due Date</option>
+    </select>
+</div>
+
+        <!-- Task cards will render here -->
         <div id="taskContainer"></div>
+
+        <!-- ================= PAGINATION ================= -->
+        <div class="pagination">
+            <button id="prevBtn" onclick="previousPage()">Previous</button>
+            <span id="pageInfo"></span>
+            <button id="nextBtn" onclick="nextPage()">Next</button>
+        </div>
+
     </div>
 
 </div>

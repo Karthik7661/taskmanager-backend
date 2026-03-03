@@ -1,20 +1,40 @@
 package com.skarthik.taskmanager.repository;
 
-import java.util.List;
-
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
-
+import com.skarthik.taskmanager.model.Task;
 import com.skarthik.taskmanager.model.Priority;
 import com.skarthik.taskmanager.model.Status;
-import com.skarthik.taskmanager.model.Task;
 
-@Repository
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaRepository;
+
 public interface TaskRepository extends JpaRepository<Task, Long> {
 
-    List<Task> findByStatus(Status status);
+    Page<Task> findByTitleContainingIgnoreCase(
+            String title,
+            Pageable pageable
+    );
 
-    List<Task> findByPriority(Priority priority);
+    Page<Task> findByStatus(
+            Status status,
+            Pageable pageable
+    );
 
-    List<Task> findByTitleContainingIgnoreCase(String keyword);
+    Page<Task> findByPriority(
+            Priority priority,
+            Pageable pageable
+    );
+
+    Page<Task> findByStatusAndPriority(
+            Status status,
+            Priority priority,
+            Pageable pageable
+    );
+
+    Page<Task> findByStatusAndPriorityAndTitleContainingIgnoreCase(
+            Status status,
+            Priority priority,
+            String title,
+            Pageable pageable
+    );
 }

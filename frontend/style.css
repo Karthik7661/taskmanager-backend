@@ -120,71 +120,159 @@ button:hover {
     transform: translateY(-2px);
 }
 
+/* ================= BADGES ================= */
+
+.badges {
+    margin-bottom: 15px;
+}
+
+.badge {
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-right: 10px;
+    color: white;
+}
+
+/* ===== STATUS COLORS (SOLID) ===== */
+
+.status-PENDING {
+    background: #ff9800;
+}
+
+.status-IN_PROGRESS {
+    background: #2196f3;
+}
+
+.status-COMPLETED {
+    background: #4caf50;
+}
+
+/* ===== PRIORITY COLORS (SOLID) ===== */
+
+.priority-LOW {
+    background: #9e9e9e;
+}
+
+.priority-MEDIUM {
+    background: #ffb300;
+}
+
+.priority-HIGH {
+    background: #e53935;
+}
+
 /* ================= TASK CARD ================= */
 
 .task {
     background: #f8f9ff;
-    padding: 22px;
-    border-radius: 16px;
-    margin-bottom: 20px;
-    border-left: 6px solid #667eea;
-    transition: 0.3s;
+    padding: 30px;
+    border-radius: 18px;
+    margin-bottom: 25px;
+    transition: 0.3s ease;
 }
 
 .task:hover {
     background: #ffffff;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+    transform: translateY(-3px);
 }
 
-/* STATUS BADGE */
-.status {
-    padding: 6px 14px;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: 500;
-    margin-right: 10px;
-    display: inline-block;
+/* TWO COLUMN LAYOUT */
+
+.task-layout {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
 }
 
-/* STATUS COLORS */
-.status.PENDING {
-    background: #fff4e5;
-    color: #ff9800;
+.task-left {
+    flex: 1;
 }
 
-.status.IN_PROGRESS {
-    background: #e3f2fd;
-    color: #2196f3;
+.task-left h3 {
+    font-size: 18px;
+    margin-bottom: 6px;
 }
 
-.status.COMPLETED {
-    background: #e8f5e9;
-    color: #4caf50;
+.task-left p {
+    font-size: 14px;
+    color: #666;
 }
 
-/* PRIORITY */
-.priority {
-    font-size: 12px;
-    color: #555;
+.task-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 15px;
+}
+
+/* BADGES */
+.badges {
+    display: flex;
+    gap: 12px;
 }
 
 /* ACTION BUTTONS */
 .actions {
-    margin-top: 15px;
     display: flex;
-    gap: 14px;
+    gap: 12px;
 }
 
-.actions button {
-    font-size: 13px;
-    padding: 8px 16px;
+/* ================= DASHBOARD STATS ================= */
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 35px;
 }
 
-/* DELETE BUTTON */
-.actions button:last-child {
-    background: #ff5252;
+.stat-card {
+    background: white;
+    padding: 20px;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.08);
 }
 
-.actions button:last-child:hover {
-    background: #e53935;
+.stat-card h4 {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+.stat-card p {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+/* Colored variants */
+.stat-card.pending p {
+    color: #ff9800;
+}
+
+.stat-card.progress p {
+    color: #2196f3;
+}
+
+.stat-card.completed p {
+    color: #4caf50;
+}
+
+/* ================= STATUS BORDER COLORS ================= */
+
+.border-PENDING {
+    border-left: 6px solid #ff9800;
+}
+
+.border-IN_PROGRESS {
+    border-left: 6px solid #2196f3;
+}
+
+.border-COMPLETED {
+    border-left: 6px solid #4caf50;
 }
