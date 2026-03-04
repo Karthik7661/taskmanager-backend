@@ -101,53 +101,84 @@ function sortTasks(tasks) {
 =========================== */
 function displayTasks(tasks) {
 
-    const container = document.getElementById("taskContainer");
-    container.innerHTML = "";
+const container = document.getElementById("taskContainer");
+container.innerHTML = "";
 
-    if (!tasks || tasks.length === 0) {
-        container.innerHTML = "<p>No tasks found.</p>";
-        return;
-    }
+if (!tasks || tasks.length === 0) {
+container.innerHTML = "<p>No tasks found.</p>";
+return;
+}
 
-    tasks.forEach(task => {
+tasks.forEach(task => {
 
-        const dueClass = getDueDateClass(task.dueDate);
+const div = document.createElement("div");
 
-        const div = document.createElement("div");
-        div.className = `task border-${task.status} ${dueClass}`;
+div.className = `task border-${task.status}`;
 
-        div.innerHTML = `
-            <div class="task-layout">
-                
-                <div class="task-left">
-                    <h3>${task.title}</h3>
-                    <p>${task.description || ""}</p>
-                    <small>Due: ${formatDate(task.dueDate)}</small>
-                </div>
+div.innerHTML = `
 
-                <div class="task-right">
+<div class="task-layout">
 
-                    <div class="badges">
-                        <span class="badge status-${task.status}">
-                            ${task.status}
-                        </span>
-                        <span class="badge priority-${task.priority}">
-                            ${task.priority}
-                        </span>
-                    </div>
+<div class="task-left">
 
-                    <div class="actions">
-                        <button onclick="editTask(${task.id})">Edit</button>
-                        <button onclick="toggleStatus(${task.id}, '${task.status}')">Toggle</button>
-                        <button onclick="deleteTask(${task.id})">Delete</button>
-                    </div>
+<h3>
+<i class="fa-solid fa-list-check"></i>
+${task.title}
+</h3>
 
-                </div>
-            </div>
-        `;
+<p>${task.description || ""}</p>
 
-        container.appendChild(div);
-    });
+<small>
+<i class="fa-regular fa-clock"></i>
+${formatDate(task.dueDate)}
+</small>
+
+<div class="progress-bar">
+<div class="progress ${task.status}"></div>
+</div>
+
+</div>
+
+<div class="task-right">
+
+<div class="badges">
+
+<span class="badge status-${task.status}">
+${task.status}
+</span>
+
+<span class="badge priority-${task.priority}">
+${task.priority}
+</span>
+
+</div>
+
+<div class="actions">
+
+<button onclick="editTask(${task.id})">
+<i class="fa-solid fa-pen"></i>
+</button>
+
+<button onclick="toggleStatus(${task.id}, '${task.status}')">
+<i class="fa-solid fa-repeat"></i>
+</button>
+
+<button onclick="deleteTask(${task.id})">
+<i class="fa-solid fa-trash"></i>
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+`;
+
+container.appendChild(div);
+
+});
+
 }
 
 /* ===========================

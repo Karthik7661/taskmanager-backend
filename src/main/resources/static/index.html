@@ -2,101 +2,123 @@
 <html>
 <head>
     <title>Task Manager Pro</title>
+
     <link rel="stylesheet" href="style.css">
+
+    <!-- ICON LIBRARY -->
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
+
 <body>
 
 <div class="container">
 
-    <h1>🚀 Task Manager</h1>
+<h1><i class="fa-solid fa-rocket"></i> Task Manager</h1>
 
-    <!-- DASHBOARD STATS -->
+<!-- DASHBOARD -->
 <div class="stats">
-    <div class="stat-card">
-        <h4>Total</h4>
-        <p id="totalCount">0</p>
-    </div>
 
-    <div class="stat-card pending">
-        <h4>Pending</h4>
-        <p id="pendingCount">0</p>
-    </div>
-
-    <div class="stat-card progress">
-        <h4>In Progress</h4>
-        <p id="progressCount">0</p>
-    </div>
-
-    <div class="stat-card completed">
-        <h4>Completed</h4>
-        <p id="completedCount">0</p>
-    </div>
-</div>
-    <!-- ================= CREATE TASK ================= -->
-    <div class="card form-card">
-        <h2>Create Task</h2>
-
-        <input type="text" id="title" placeholder="Task Title">
-
-        <textarea id="description" placeholder="Task Description"></textarea>
-
-        <div class="row">
-            <select id="status">
-                <option value="PENDING">PENDING</option>
-                <option value="IN_PROGRESS">IN_PROGRESS</option>
-                <option value="COMPLETED">COMPLETED</option>
-            </select>
-
-            <select id="priority">
-                <option value="LOW">LOW</option>
-                <option value="MEDIUM">MEDIUM</option>
-                <option value="HIGH">HIGH</option>
-            </select>
-        </div>
-
-        <input type="datetime-local" id="dueDate">
-
-        <button onclick="createTask()">Add Task</button>
-    </div>
-
-    <!-- ================= SEARCH SECTION ================= -->
-    <div class="card">
-        <h2>Search Tasks</h2>
-
-        <div class="row">
-            <input type="text" id="searchInput" placeholder="Search by title">
-            <button onclick="searchTasks()">Search</button>
-            <button onclick="resetSearch()">Reset</button>
-        </div>
-    </div>
-
-    <!-- ================= TASK LIST ================= -->
-    <div class="card">
-        <h2>All Tasks</h2>
-        <div class="row" style="margin-bottom:20px;">
-    <select id="sortSelect" onchange="applySorting()">
-        <option value="">Sort By</option>
-        <option value="title">Title</option>
-        <option value="priority">Priority</option>
-        <option value="status">Status</option>
-        <option value="dueDate">Due Date</option>
-    </select>
+<div class="stat-card">
+<h4>Total</h4>
+<p id="totalCount">0</p>
 </div>
 
-        <!-- Task cards will render here -->
-        <div id="taskContainer"></div>
+<div class="stat-card pending">
+<h4>Pending</h4>
+<p id="pendingCount">0</p>
+</div>
 
-        <!-- ================= PAGINATION ================= -->
-        <div class="pagination">
-            <button id="prevBtn" onclick="previousPage()">Previous</button>
-            <span id="pageInfo"></span>
-            <button id="nextBtn" onclick="nextPage()">Next</button>
-        </div>
+<div class="stat-card progress">
+<h4>In Progress</h4>
+<p id="progressCount">0</p>
+</div>
 
-    </div>
+<div class="stat-card completed">
+<h4>Completed</h4>
+<p id="completedCount">0</p>
+</div>
+
+</div>
+
+<!-- CREATE TASK -->
+<div class="card form-card">
+
+<h2><i class="fa-solid fa-plus"></i> Create Task</h2>
+
+<input type="text" id="title" placeholder="Task Title">
+
+<textarea id="description" placeholder="Task Description"></textarea>
+
+<div class="row">
+
+<select id="status">
+<option value="PENDING">PENDING</option>
+<option value="IN_PROGRESS">IN_PROGRESS</option>
+<option value="COMPLETED">COMPLETED</option>
+</select>
+
+<select id="priority">
+<option value="LOW">LOW</option>
+<option value="MEDIUM">MEDIUM</option>
+<option value="HIGH">HIGH</option>
+</select>
+
+</div>
+
+<input type="datetime-local" id="dueDate">
+
+<button onclick="createTask()">Add Task</button>
+
+</div>
+
+<!-- SEARCH -->
+<div class="card">
+
+<h2><i class="fa-solid fa-search"></i> Search Tasks</h2>
+
+<div class="row">
+
+<input type="text" id="searchInput" placeholder="Search by title">
+
+<button onclick="searchTasks()">Search</button>
+
+<button onclick="resetSearch()">Reset</button>
+
+</div>
+
+</div>
+
+<!-- TASK LIST -->
+<div class="card">
+
+<h2><i class="fa-solid fa-list-check"></i> All Tasks</h2>
+
+<div class="row" style="margin-bottom:20px;">
+
+<select id="sortSelect" onchange="applySorting()">
+<option value="">Sort By</option>
+<option value="title">Title</option>
+<option value="priority">Priority</option>
+<option value="status">Status</option>
+<option value="dueDate">Due Date</option>
+</select>
+
+</div>
+
+<div id="taskContainer"></div>
+
+<div class="pagination">
+<button id="prevBtn" onclick="previousPage()">Previous</button>
+<span id="pageInfo"></span>
+<button id="nextBtn" onclick="nextPage()">Next</button>
+</div>
+
+</div>
 
 </div>
 
 <script src="script.js"></script>
+
 </body>
 </html>
