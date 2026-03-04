@@ -130,7 +130,7 @@ ${task.title}
 
 <small>
 <i class="fa-regular fa-clock"></i>
-${formatDate(task.dueDate)}
+Due: ${formatDate(task.dueDate)}
 </small>
 
 <div class="progress-bar">
