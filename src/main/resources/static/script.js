@@ -17,10 +17,6 @@ async function fetchTasks(page = 0) {
 
     let url = `${API_URL}?page=${page}&size=${pageSize}`;
 
-    if (currentSearch) {
-        url += `&search=${currentSearch}`;
-    }
-
     const response = await fetch(url);
     const data = await response.json();
 
@@ -28,21 +24,28 @@ async function fetchTasks(page = 0) {
 
     let tasks = data.content;
 
+    /* SEARCH FILTER (FRONTEND) */
+    if (currentSearch) {
+        tasks = tasks.filter(t =>
+            t.title.toLowerCase().includes(currentSearch.toLowerCase())
+        );
+    }
+
+    /* SORTING */
     if (currentSort) {
         tasks = sortTasks(tasks);
     }
 
     displayTasks(tasks);
     updatePagination();
-    updateDashboard(data);   // ✅ FIXED
+    updateDashboard(data);
 }
 
 /* ===========================
-   DASHBOARD UPDATE (FIXED)
+   DASHBOARD
 =========================== */
 function updateDashboard(data) {
 
-    // Total tasks in database (from backend)
     document.getElementById("totalCount").innerText =
         data.totalElements;
 
@@ -267,10 +270,10 @@ async function toggleStatus(id, currentStatus) {
 
     fetchTasks(currentPage);
 }
+
 /* ===========================
    SEARCH
 =========================== */
-
 function searchTasks() {
     currentSearch = document.getElementById("searchInput").value.trim();
     fetchTasks(0);
@@ -281,6 +284,7 @@ function resetSearch() {
     document.getElementById("searchInput").value = "";
     fetchTasks(0);
 }
+
 /* ===========================
    PAGINATION
 =========================== */
