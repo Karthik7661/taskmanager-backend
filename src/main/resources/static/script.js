@@ -15,8 +15,7 @@ async function fetchTasks(page = 0) {
 
     currentPage = page;
 
-    let url = `${API_URL}?page=${page}&size=${pageSize}`;
-
+let url = `${API_URL}?page=${page}&size=${pageSize}&sort=id,asc`;
     const response = await fetch(url);
     const data = await response.json();
 
