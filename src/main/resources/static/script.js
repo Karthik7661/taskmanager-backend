@@ -177,43 +177,24 @@ function formatDate(date) {
 =========================== */
 async function createTask() {
 
-    const title = document.getElementById("title").value;
-    const description = document.getElementById("description").value;
-    const status = document.getElementById("status").value;
-    const priority = document.getElementById("priority").value;
-    const dueDate = document.getElementById("dueDate").value;
+    const task = {
+        title: document.getElementById("title").value,
+        description: document.getElementById("description").value,
+        status: document.getElementById("status").value,
+        priority: document.getElementById("priority").value,
+        dueDate: document.getElementById("dueDate").value
+    };
 
-    if (!title.trim()) {
-        alert("Title is required");
-        return;
-    }
+    await fetch(API_URL, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(task)
+    });
 
-    const taskData = { title, description, status, priority, dueDate };
-
-    if (editingTaskId) {
-
-        await fetch(`${API_URL}/${editingTaskId}`, {
-            method: "PUT",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(taskData)
-        });
-
-        editingTaskId = null;
-        document.querySelector(".form-card button").innerText = "Add Task";
-
-    } else {
-
-        await fetch(API_URL, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(taskData)
-        });
-    }
-
-    clearForm();
-    fetchTasks(0);
+    fetchTasks();
 }
-
 /* ===========================
    EDIT
 =========================== */
