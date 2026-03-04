@@ -1,6 +1,6 @@
 console.log("SCRIPT LOADED");
 
-const API_URL = "http://localhost:8080/api/tasks";
+const API_URL = "http://localhhttps://taskmanager-backend-1-qufp.onrender.com/api/tasksost:8080/api/tasks";
 
 let currentPage = 0;
 let pageSize = 5;
